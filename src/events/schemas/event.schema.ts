@@ -14,7 +14,7 @@ export class EventRecord {
   @Prop({ required: true, enum: ['pending','processing','processed'], default: 'pending', index: true }) status!: EventStatus;
   @Prop() processingStartedAt?: Date;
   @Prop() processedAt?: Date;
-  @Prop() result?: Record<string, unknown>;
+  @Prop({ type: Object, default: null }) result?: Record<string, unknown> | null;
 }
 export const EventSchema = SchemaFactory.createForClass(EventRecord);
 EventSchema.index({ patientId: 1, ts: 1, status: 1 });
